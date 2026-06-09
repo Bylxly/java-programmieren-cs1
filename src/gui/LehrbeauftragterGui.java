@@ -104,12 +104,16 @@ public class LehrbeauftragterGui extends InternalFrameElternklasse {
 
         this.model = new DefaultTableModel();
         this.table = new JTable(this.model);
+        // 7.3: Tabelle über die Spaltenköpfe sortierbar machen
+        this.table.setAutoCreateRowSorter(true);
 
         this.panel = new JPanel(new BorderLayout());
         this.scrollPane = new JScrollPane(this.table);
         panel.add(scrollPane, BorderLayout.CENTER);
 
         JButton speichernButton = new JButton("Änderungen speichern");
+        // 7.3: Tooltip vorsehen
+        speichernButton.setToolTipText("Änderungen ins Datenmodell übernehmen");
         speichernButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 aenderungenSpeichern();

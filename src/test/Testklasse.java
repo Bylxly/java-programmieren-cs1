@@ -52,9 +52,7 @@ public class Testklasse {
     };
 
     /**
-     * Einstiegspunkt des Programms; erprobt die Personen-Klassen und startet die GUI.
-     *
-     * @param args Kommandozeilenargumente (werden nicht verwendet)
+     * Einstiegspunkt des Programms
      */
     public static void main(String[] args) {
         Person.druckeAnzahl();
@@ -166,6 +164,11 @@ public class Testklasse {
         // GUI starten
         IKlausurSchreiber[] finalPrueflinge = prueflinge;
         SwingUtilities.invokeLater(() -> {
+            // 7.3: Look & Feel des Systems verwenden
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception _) {
+            }
             new gui.Gui(
                 angestelltenFeld,
                 mitarbeiterFeld,

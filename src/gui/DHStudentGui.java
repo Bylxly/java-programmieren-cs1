@@ -118,7 +118,9 @@ public class DHStudentGui extends InternalFrameElternklasse {
 		
 		this.model = new DefaultTableModel();
 		this.table = new JTable(this.model);
-		
+		// 7.3: Tabelle über die Spaltenköpfe sortierbar machen
+		this.table.setAutoCreateRowSorter(true);
+
 		// Erstellen eines Panels für den Inhalt des internen Frames
         this.panel = new JPanel(new BorderLayout());
 		
@@ -127,6 +129,8 @@ public class DHStudentGui extends InternalFrameElternklasse {
 
 		// Knopf zum Speichern von Änderungen erstellen
 		JButton speichernButton = new JButton("Änderungen speichern");
+		// 7.3: Tooltip vorsehen
+		speichernButton.setToolTipText("Änderungen ins Datenmodell übernehmen");
 		speichernButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				aenderungenSpeichern();

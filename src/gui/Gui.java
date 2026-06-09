@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 import personen.Angestellter;
@@ -137,6 +138,22 @@ public class Gui extends JFrame {
 		// Hinzufügen der Menüleiste zum JFrame
 		this.setJMenuBar(menuBar);
 
+		// 7.3: Tastatur-Kürzel (Mnemonics + Accelerator) vorsehen
+		fileMenu.setMnemonic('D');
+		editMenu.setMnemonic('B');
+		anzeigeMenu.setMnemonic('A');
+		exitMenuItem.setAccelerator(KeyStroke.getKeyStroke("control Q"));
+
+		// 7.3: Tooltips vorsehen
+		newMenuItem.setToolTipText("Einen neuen Datensatz anlegen");
+		openMenuItem.setToolTipText("Eine Datei öffnen");
+		saveMenuItem.setToolTipText("Aktuelle Daten speichern");
+		exitMenuItem.setToolTipText("Programm beenden");
+		angestelltenMenuItem.setToolTipText("Fenster mit den Angestellten anzeigen");
+		studentenMenuItem.setToolTipText("Fenster mit den Studenten anzeigen");
+		dhStudentenMenuItem.setToolTipText("Fenster mit den DH-Studenten anzeigen");
+		lehrbeauftragterMenuItem.setToolTipText("Fenster mit den Lehrbeauftragten anzeigen");
+
         // Desktop-Fläche für die "JInternalFrame"-Fenster erstellen
         this.desktop = new JDesktopPane();
         setContentPane(desktop);
@@ -196,7 +213,13 @@ public class Gui extends JFrame {
 		// Hinzufügen der ActionListener zu den Menüelementen
 		exitMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				// 7.3: Nachfrage, ob das Programm wirklich beendet werden soll
+				int antwort = JOptionPane.showConfirmDialog(Gui.this,
+						"Programm wirklich beenden?", "Beenden",
+						JOptionPane.YES_NO_OPTION);
+				if (antwort == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
 			}
 		});
 
